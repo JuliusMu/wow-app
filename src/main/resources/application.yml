@@ -1,0 +1,12 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          battleNet:
+            authorization-uri: https://eu.battle.net/oauth/authorize
+            token-uri: https://eu.battle.net/oauth/token
+        registration:
+          battleNet:
+            client-id: c878040eb3204156813780b93d388040
+            client-secret: N8SO6bWb93hpmP014UJPSvIkcguor0Gh
