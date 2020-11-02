@@ -16,3 +16,4 @@ spring:
             redirect-uri: '{baseUrl}/login/oauth2/code/battleNet'
             client-name: BattleNet
             client-alias: battlenet
+            scope: wow.profile
