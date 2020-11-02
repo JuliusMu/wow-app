@@ -7,7 +7,7 @@ spring:
             authorization-uri: https://eu.battle.net/oauth/authorize
             token-uri: https://eu.battle.net/oauth/token
             user-info-uri: https://eu.battle.net/oauth/userinfo
-            user-name-attribute: battletag
+            user-name-attribute: id
         registration:
           battleNet:
             client-id: c878040eb3204156813780b93d388040
@@ -17,3 +17,9 @@ spring:
             client-name: BattleNet
             client-alias: battlenet
             scope: wow.profile
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG

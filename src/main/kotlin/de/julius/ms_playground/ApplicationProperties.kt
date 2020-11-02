@@ -4,48 +4,40 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder
+import org.springframework.security.oauth2.client.registration.ClientRegistration
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
+import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository
+import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository
+import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction
+import org.springframework.security.oauth2.client.web.server.UnAuthenticatedServerOAuth2AuthorizedClientRepository
+import org.springframework.security.oauth2.core.AuthorizationGrantType
 import org.springframework.web.reactive.function.client.WebClient
 
 
 @Configuration
 class ApplicationProperties {
 
-    /*@Bean("CustomClientRegistration")
-    fun getRegistration(): ReactiveClientRegistrationRepository? {
+    @Bean
+    fun getRegistration(): ClientRegistrationRepository? {
         val registration: ClientRegistration = ClientRegistration
                 .withRegistrationId("battleNet")
                 .tokenUri("https://eu.battle.net/oauth/token")
                 .clientId("c878040eb3204156813780b93d388040")
-                .clientSecret("c878040eb3204156813780b93d388040")
+                .clientSecret("N8SO6bWb93hpmP014UJPSvIkcguor0Gh")
                 .authorizationGrantType(AuthorizationGrantType("authorization_code"))
-                .redirectUri("{baseUrl}/login/oauth2/code/battleNet")
+                .redirectUriTemplate("{baseUrl}/login/oauth2/code/battleNet")
                 .userInfoUri("https://eu.battle.net/oauth/userinfo")
-                .userNameAttributeName("battletag")
+                .userNameAttributeName("sub")
                 .scope("wow.profile")
                 .authorizationUri("https://eu.battle.net/oauth/authorize")
                 .build()
-        return InMemoryReactiveClientRegistrationRepository(registration)
-    }*/
+        return InMemoryClientRegistrationRepository(registration)
+    }
 
 
-    /*@Bean
-    fun webClient(
-            clientRegistrations: ReactiveClientRegistrationRepository,
-            authorizedClients: ServerOAuth2AuthorizedClientRepository?): WebClient? {
-        val oauth = ServerOAuth2AuthorizedClientExchangeFilterFunction(
-                clientRegistrations,
-                authorizedClients)
-        oauth.setDefaultOAuth2AuthorizedClient(true)
-        return WebClient.builder()
-                .filter(oauth)
-                .build()
-
-
-    }*/
     @Bean
     fun webClient(authorizedClientManager: OAuth2AuthorizedClientManager?): WebClient {
         val oauth2Client = ServletOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager)
@@ -59,9 +51,6 @@ class ApplicationProperties {
                                 authorizedClientRepository: OAuth2AuthorizedClientRepository?): OAuth2AuthorizedClientManager? {
         val authorizedClientProvider = OAuth2AuthorizedClientProviderBuilder.builder()
                 .authorizationCode()
-                .refreshToken()
-                .clientCredentials()
-                .password()
                 .build()
         val authorizedClientManager = DefaultOAuth2AuthorizedClientManager(
                 clientRegistrationRepository, authorizedClientRepository)
