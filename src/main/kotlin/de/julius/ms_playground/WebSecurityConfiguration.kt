@@ -8,6 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 class WebSecurityConfiguration(): WebSecurityConfigurerAdapter() {
 
     override fun configure(http: HttpSecurity) {
-        http.authorizeRequests().antMatchers("/users/all").permitAll()
+        http.authorizeRequests().anyRequest().authenticated().and().oauth2Login()
     }
 }

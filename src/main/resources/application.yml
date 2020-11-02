@@ -6,7 +6,13 @@ spring:
           battleNet:
             authorization-uri: https://eu.battle.net/oauth/authorize
             token-uri: https://eu.battle.net/oauth/token
+            user-info-uri: https://eu.battle.net/oauth/userinfo
+            user-name-attribute: battletag
         registration:
           battleNet:
             client-id: c878040eb3204156813780b93d388040
             client-secret: N8SO6bWb93hpmP014UJPSvIkcguor0Gh
+            authorization-grant-type: authorization_code
+            redirect-uri: '{baseUrl}/login/oauth2/code/battleNet'
+            client-name: BattleNet
+            client-alias: battlenet
