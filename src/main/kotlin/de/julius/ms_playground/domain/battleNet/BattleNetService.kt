@@ -1,7 +1,8 @@
 package de.julius.ms_playground.domain.battleNet
 
+import org.springframework.hateoas.client.Hop
+import org.springframework.hateoas.client.Traverson
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient
 import org.springframework.stereotype.Component
 import org.springframework.web.reactive.function.client.WebClient

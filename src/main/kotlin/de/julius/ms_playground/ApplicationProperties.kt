@@ -2,17 +2,15 @@ package de.julius.ms_playground
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.hateoas.config.HypermediaWebClientConfigurer
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder
 import org.springframework.security.oauth2.client.registration.ClientRegistration
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
 import org.springframework.security.oauth2.client.registration.InMemoryClientRegistrationRepository
-import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction
-import org.springframework.security.oauth2.client.web.server.UnAuthenticatedServerOAuth2AuthorizedClientRepository
 import org.springframework.security.oauth2.core.AuthorizationGrantType
 import org.springframework.web.reactive.function.client.WebClient
 
@@ -39,11 +37,16 @@ class ApplicationProperties {
 
 
     @Bean
-    fun webClient(authorizedClientManager: OAuth2AuthorizedClientManager?): WebClient {
+    fun webClient(authorizedClientManager: OAuth2AuthorizedClientManager?, configurer: HypermediaWebClientConfigurer): WebClient {
         val oauth2Client = ServletOAuth2AuthorizedClientExchangeFilterFunction(authorizedClientManager)
-        return WebClient.builder()
+        return hypermediaWebClient(configurer)
                 .apply(oauth2Client.oauth2Configuration())
                 .build()
+    }
+
+    @Bean
+    fun hypermediaWebClient(configurer: HypermediaWebClientConfigurer): WebClient.Builder {
+        return configurer.registerHypermediaTypes(WebClient.builder())
     }
 
     @Bean

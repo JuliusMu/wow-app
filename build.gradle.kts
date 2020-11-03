@@ -27,6 +27,7 @@ dependencies {
     implementation("org.springframework.security:spring-security-oauth2-client")
     implementation("org.springframework.security:spring-security-oauth2-jose")
     implementation("org.springframework.security:spring-security-config")
+    implementation("org.springframework.hateoas:spring-hateoas")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
