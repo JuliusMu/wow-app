@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RestController
 
 @RestController("/api")
@@ -18,11 +19,11 @@ class BattleNetController(val battleNetService: BattleNetService) {
         return response
     }
 
-    @GetMapping("/character")
-    fun getCharacter(@RegisteredOAuth2AuthorizedClient("battleNet") authorizedClient: OAuth2AuthorizedClient): String? {
-        val response = battleNetService.getWowCharacter(authorizedClient)
+    @GetMapping("/character/{characterName}")
+    fun getCharacter(@RegisteredOAuth2AuthorizedClient("battleNet") authorizedClient: OAuth2AuthorizedClient, @PathVariable characterName: String): String? {
+        val response = battleNetService.getWowCharacterMedia(authorizedClient,characterName)
         if (response != null) {
-            return response
+            return "<img src=\"$response\">"
         }
         else{
             return "AAAAAHHH!!"
