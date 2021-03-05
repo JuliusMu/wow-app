@@ -1,4 +1,4 @@
-package de.julius.ms_playground.domain.battleNet
+package de.juliusmu.wowapp.domain.battleNet
 
 import WowCharacter
 import WowEquipmentResponse

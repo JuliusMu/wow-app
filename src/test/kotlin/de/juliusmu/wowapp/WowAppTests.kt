@@ -1,10 +1,10 @@
-package de.julius.ms_playground
+package de.juliusmu.wowapp
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest
 
 @SpringBootTest
-class MsPlaygroundApplicationTests {
+class WowAppTests {
 
 	@Test
 	fun contextLoads() {

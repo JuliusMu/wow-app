@@ -1,4 +1,4 @@
-package de.julius.ms_playground
+package de.juliusmu.wowapp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -8,8 +8,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @SpringBootApplication
 @EnableWebSecurity
 @EnableHypermediaSupport(type = [EnableHypermediaSupport.HypermediaType.HAL])
-class MsPlaygroundApplication
+class WowApp
 
 fun main(args: Array<String>) {
-    runApplication<MsPlaygroundApplication>(*args)
+    runApplication<WowApp>(*args)
 }

@@ -1,1 +1,2 @@
-rootProject.name = "ms_playground"
+rootProject.name = "wowapp"
+

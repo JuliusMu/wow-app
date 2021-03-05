@@ -1,4 +1,4 @@
-package de.julius.ms_playground
+package de.juliusmu.wowapp
 
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
@@ -23,8 +23,8 @@ class ApplicationProperties {
         val registration: ClientRegistration = ClientRegistration
                 .withRegistrationId("battleNet")
                 .tokenUri("https://eu.battle.net/oauth/token")
-                .clientId("c878040eb3204156813780b93d388040")
-                .clientSecret("N8SO6bWb93hpmP014UJPSvIkcguor0Gh")
+                .clientId("750ffaa9ec514c8e9e89e2a10647324d")
+                .clientSecret("BPZwCRE6V1nIiU7HLYPJxo4Z1glAiv9Y")
                 .authorizationGrantType(AuthorizationGrantType("authorization_code"))
                 .redirectUriTemplate("{baseUrl}/login/oauth2/code/battleNet")
                 .userInfoUri("https://eu.battle.net/oauth/userinfo")
