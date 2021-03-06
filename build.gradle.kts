@@ -62,10 +62,13 @@ tasks.withType<KotlinCompile> {
 }
 
 jib{
+    to {
+        image = "juliusmu/wow-app:jib"
+    }
     container {
-        appRoot = "/wowAuction"
+        appRoot = "/wow-app"
         jvmFlags = mutableListOf("-Djava.security.egd=file:/dev/./urandom")
         ports = mutableListOf("8080")
-        workingDirectory = "/wowAuction"
+        workingDirectory = "/wow-app"
     }
 }

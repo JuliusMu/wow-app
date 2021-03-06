@@ -28,4 +28,4 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Create docker cointainer and publish to docker hub
-      run: ./gradlew jib --image juliusmu/wow-app:github
+      run: ./gradlew jib
