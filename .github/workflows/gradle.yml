@@ -31,5 +31,5 @@ jobs:
       run: ./gradlew jib
     - uses: eskatos/gradle-command-action@v1
       with:
-        gradle-version: 6.5
+        gradle-version: current
         arguments: jib
